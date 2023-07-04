@@ -1,0 +1,87 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"0.458295",
+   "Default View_TopLeft":"-1148,0",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
+#  -string -flagsOSRD
+preplace port S_AXI_LITE -pg 1 -lvl 0 -x -10 -y 50 -defaultsOSRD
+preplace port M_AXI_SG -pg 1 -lvl 2 -x 420 -y 50 -defaultsOSRD
+preplace port M_AXI_MM2S -pg 1 -lvl 2 -x 420 -y 70 -defaultsOSRD
+preplace port M_AXIS_MM2S -pg 1 -lvl 2 -x 420 -y 90 -defaultsOSRD
+preplace port S_AXI_LITE1 -pg 1 -lvl 0 -x -10 -y 230 -defaultsOSRD
+preplace port M_AXI_SG1 -pg 1 -lvl 2 -x 420 -y 230 -defaultsOSRD
+preplace port M_AXI_MM2S1 -pg 1 -lvl 2 -x 420 -y 250 -defaultsOSRD
+preplace port M_AXIS_MM2S1 -pg 1 -lvl 2 -x 420 -y 280 -defaultsOSRD
+preplace port S_AXI_LITE2 -pg 1 -lvl 0 -x -10 -y 410 -defaultsOSRD
+preplace port M_AXI_SG2 -pg 1 -lvl 2 -x 420 -y 410 -defaultsOSRD
+preplace port M_AXI_MM2S2 -pg 1 -lvl 2 -x 420 -y 430 -defaultsOSRD
+preplace port M_AXIS_MM2S2 -pg 1 -lvl 2 -x 420 -y 450 -defaultsOSRD
+preplace port S_AXI_LITE3 -pg 1 -lvl 0 -x -10 -y 590 -defaultsOSRD
+preplace port M_AXI_SG3 -pg 1 -lvl 2 -x 420 -y 590 -defaultsOSRD
+preplace port M_AXI_MM2S3 -pg 1 -lvl 2 -x 420 -y 610 -defaultsOSRD
+preplace port M_AXIS_MM2S3 -pg 1 -lvl 2 -x 420 -y 630 -defaultsOSRD
+preplace port S_AXI_LITE4 -pg 1 -lvl 0 -x -10 -y 770 -defaultsOSRD
+preplace port M_AXI_SG4 -pg 1 -lvl 2 -x 420 -y 770 -defaultsOSRD
+preplace port M_AXI_MM2S4 -pg 1 -lvl 2 -x 420 -y 790 -defaultsOSRD
+preplace port M_AXIS_MM2S4 -pg 1 -lvl 2 -x 420 -y 820 -defaultsOSRD
+preplace port M_AXI_SG5 -pg 1 -lvl 2 -x 420 -y 150 -defaultsOSRD
+preplace port M_AXI_MM2S5 -pg 1 -lvl 2 -x 420 -y 110 -defaultsOSRD
+preplace port M_AXIS_MM2S5 -pg 1 -lvl 2 -x 420 -y 20 -defaultsOSRD
+preplace port S_AXI_LITE6 -pg 1 -lvl 0 -x -10 -y 950 -defaultsOSRD
+preplace port M_AXI_SG6 -pg 1 -lvl 2 -x 420 -y 950 -defaultsOSRD
+preplace port M_AXI_MM2S6 -pg 1 -lvl 2 -x 420 -y 970 -defaultsOSRD
+preplace port M_AXIS_MM2S6 -pg 1 -lvl 2 -x 420 -y 1000 -defaultsOSRD
+preplace port port-id_m_axi_mm2s_aclk -pg 1 -lvl 0 -x -10 -y 970 -defaultsOSRD
+preplace port port-id_axi_resetn -pg 1 -lvl 0 -x -10 -y 790 -defaultsOSRD
+preplace port port-id_mm2s_introut -pg 1 -lvl 2 -x 420 -y 130 -defaultsOSRD
+preplace port port-id_mm2s_introut1 -pg 1 -lvl 2 -x 420 -y 310 -defaultsOSRD
+preplace port port-id_mm2s_introut2 -pg 1 -lvl 2 -x 420 -y 490 -defaultsOSRD
+preplace port port-id_mm2s_introut3 -pg 1 -lvl 2 -x 420 -y 670 -defaultsOSRD
+preplace port port-id_mm2s_introut4 -pg 1 -lvl 2 -x 420 -y 850 -defaultsOSRD
+preplace port port-id_mm2s_introut5 -pg 1 -lvl 2 -x 420 -y 170 -defaultsOSRD
+preplace port port-id_mm2s_introut6 -pg 1 -lvl 2 -x 420 -y 1030 -defaultsOSRD
+preplace port port-id_m_axi_mm2s_aclk1 -pg 1 -lvl 0 -x -10 -y 20 -defaultsOSRD
+preplace inst axi_dma_1 -pg 1 -lvl 1 -x 190 -y 90 -defaultsOSRD
+preplace inst axi_dma_2 -pg 1 -lvl 1 -x 190 -y 270 -defaultsOSRD
+preplace inst axi_dma_3 -pg 1 -lvl 1 -x 190 -y 450 -defaultsOSRD
+preplace inst axi_dma_6 -pg 1 -lvl 1 -x 190 -y 630 -defaultsOSRD
+preplace inst axi_dma_7 -pg 1 -lvl 1 -x 190 -y 810 -defaultsOSRD
+preplace inst axi_dma_0 -pg 1 -lvl 1 -x 190 -y 990 -defaultsOSRD
+preplace netloc axi_dma_0_mm2s_introut 1 1 1 NJ 1030
+preplace netloc axi_dma_1_mm2s_introut 1 1 1 NJ 130
+preplace netloc axi_dma_2_mm2s_introut 1 1 1 NJ 310
+preplace netloc axi_dma_3_mm2s_introut 1 1 1 NJ 490
+preplace netloc axi_dma_6_mm2s_introut 1 1 1 NJ 670
+preplace netloc axi_dma_7_mm2s_introut 1 1 1 NJ 850
+preplace netloc rst_ps8_0_249M_peripheral_aresetn 1 0 1 10 130n
+preplace netloc zynq_ultra_ps_e_0_pl_clk0 1 0 1 20 70n
+preplace netloc axi_dma_0_M_AXIS_MM2S 1 1 1 380J 990n
+preplace netloc axi_dma_0_M_AXI_MM2S 1 1 1 NJ 970
+preplace netloc axi_dma_0_M_AXI_SG 1 1 1 NJ 950
+preplace netloc axi_dma_1_M_AXIS_MM2S 1 1 1 NJ 90
+preplace netloc axi_dma_1_M_AXI_MM2S 1 1 1 NJ 70
+preplace netloc axi_dma_1_M_AXI_SG 1 1 1 NJ 50
+preplace netloc axi_dma_2_M_AXIS_MM2S 1 1 1 380J 270n
+preplace netloc axi_dma_2_M_AXI_MM2S 1 1 1 NJ 250
+preplace netloc axi_dma_2_M_AXI_SG 1 1 1 NJ 230
+preplace netloc axi_dma_3_M_AXIS_MM2S 1 1 1 NJ 450
+preplace netloc axi_dma_3_M_AXI_MM2S 1 1 1 NJ 430
+preplace netloc axi_dma_3_M_AXI_SG 1 1 1 NJ 410
+preplace netloc axi_dma_6_M_AXIS_MM2S 1 1 1 NJ 630
+preplace netloc axi_dma_6_M_AXI_MM2S 1 1 1 NJ 610
+preplace netloc axi_dma_6_M_AXI_SG 1 1 1 NJ 590
+preplace netloc axi_dma_7_M_AXI_MM2S 1 1 1 NJ 790
+preplace netloc axi_dma_7_M_AXI_SG 1 1 1 NJ 770
+preplace netloc ps8_0_axi_periph_1_M01_AXI 1 0 1 NJ 950
+preplace netloc ps8_0_axi_periph_1_M02_AXI 1 0 1 NJ 50
+preplace netloc ps8_0_axi_periph_1_M03_AXI 1 0 1 NJ 230
+preplace netloc ps8_0_axi_periph_1_M04_AXI 1 0 1 NJ 410
+preplace netloc ps8_0_axi_periph_M04_AXI 1 0 1 NJ 590
+preplace netloc ps8_0_axi_periph_M05_AXI 1 0 1 NJ 770
+preplace netloc s_axis_ctrl_1 1 1 1 380J 810n
+levelinfo -pg 1 -10 190 420
+pagesize -pg 1 -db -bbox -sgen -190 0 580 1090
+"
+}
+

@@ -6,7 +6,7 @@ This project implements the Piradio OFDM chain in loopback mode.
 
  * Vivado 2021.1
  * [Piradio driver and supporting software](https://github.com/pi-radio/piradio_ofdm_sw.git)
- * Ubuntu SD card image
+ * [Ubuntu SD card image](https://pi-radio.atlassian.net/wiki/spaces/CRS/pages/36503553/Piradio+OFDM+loopback+project)
 
 ### Hardware prerequisites
 

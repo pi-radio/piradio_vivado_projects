@@ -60,6 +60,16 @@ PING 192.168.4.5 (192.168.4.5) 56(84) bytes of data.
 64 bytes from 192.168.4.5: icmp_seq=2 ttl=64 time=0.386 ms
 
 ```
+## Resetting the OFDM project
+
+In case during execution a reset of the FPGA design and interfaces is needed, the following process can be followed without powercycling the board:
+* sudo sh remove.sh
+* sudo fpgautil -b design_1_wrapper.bit
+* sudo sh piradio_setup.sh
+
+The `` remove.sh `` brings down the interfaces, the fpgautil command reprogramms the fpga image, and then the ``piradio_setup.sh`` does the setup of the cores on the FPGA.
+
+### SDcard Ubuntu access
 
   The Ubuntu distro of the SDcard runs DHCP at boot and can be sshed with credentials: 
   * username: ubuntu

@@ -71,6 +71,8 @@ The `` remove.sh `` brings down the interfaces, the fpgautil command reprogramms
 
 ### SDcard Ubuntu access
 
+A 16 GB SDcard is required for the Ubuntu distribution
+
   The Ubuntu distro of the SDcard runs DHCP at boot and can be sshed with credentials: 
   * username: ubuntu
   * pass: p1r@d10

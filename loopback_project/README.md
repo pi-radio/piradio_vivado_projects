@@ -37,7 +37,7 @@ and the ADC224_T0_CH1 SMA in a similar way to the DAC229_T1_CH3 SMA.
 
 The piradio_ofdm_sw repository contains all necessary files for configuration of the OFDM chain. The binaries are already contained in the SD-card image. The following steps prepare the software for execution:
 
-* cd piradio_ofdm_setup/ofdm_setup
+* cd piradio_ofdm_setup/loopback/ofdm_setup
 * sudo sh setup.sh
 
 The ``setup.sh`` bash script will in turn run ``prog.sh`` and ``piradio_setup.sh`` :

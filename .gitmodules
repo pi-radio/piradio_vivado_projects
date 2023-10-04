@@ -1,3 +1,6 @@
 [submodule "ofdm-ip-cores"]
 	path = ofdm-ip-cores
 	url = https://github.com/pi-radio/ofdm-ip-cores.git
+[submodule "piradio/PiRadIP"]
+	path = piradio/PiRadIP
+	url = https://github.com/pi-radio/PiRadIP

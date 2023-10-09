@@ -37,6 +37,13 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 # To test this script, run the following commands from Vivado Tcl console:
 # source node_bd_script.tcl
 
+
+# The design that will be created by this Tcl script contains the following 
+# module references:
+# zero_pad
+
+# Please add the sources of those modules before sourcing this Tcl script.
+
 # If there is no project opened, this script will create a
 # project, but make sure you do not have an existing project
 # <./myproj/project_1.xpr> in the current working folder.
@@ -166,6 +173,31 @@ xilinx.com:ip:axis_subset_converter:1.1\
       set bCheckIPsPassed 0
    }
 
+}
+
+##################################################################
+# CHECK Modules
+##################################################################
+set bCheckModules 1
+if { $bCheckModules == 1 } {
+   set list_check_mods "\ 
+zero_pad\
+"
+
+   set list_mods_missing ""
+   common::send_gid_msg -ssname BD::TCL -id 2020 -severity "INFO" "Checking if the following modules exist in the project's sources: $list_check_mods ."
+
+   foreach mod_vlnv $list_check_mods {
+      if { [can_resolve_reference $mod_vlnv] == 0 } {
+         lappend list_mods_missing $mod_vlnv
+      }
+   }
+
+   if { $list_mods_missing ne "" } {
+      catch {common::send_gid_msg -ssname BD::TCL -id 2021 -severity "ERROR" "The following module(s) are not found in the project: $list_mods_missing" }
+      common::send_gid_msg -ssname BD::TCL -id 2022 -severity "INFO" "Please add source files for the missing module(s) above."
+      set bCheckIPsPassed 0
+   }
 }
 
 if { $bCheckIPsPassed != 1 } {
@@ -604,6 +636,21 @@ proc create_hier_cell_tx0 { parentCell nameHier } {
    CONFIG.scaled {1} \
  ] $ssr_IFFT_0
 
+  # Create instance: zero_pad_0, and set properties
+  set block_name zero_pad
+  set block_cell_name zero_pad_0
+  if { [catch {set zero_pad_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $zero_pad_0 eq "" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  set_property -dict [ list \
+   CONFIG.FREQ_HZ {92160000} \
+ ] [get_bd_intf_pins /tx0/zero_pad_0/m00_axis]
+
   # Create interface connections
   connect_bd_intf_net -intf_net Conn1 [get_bd_intf_pins s_axis_config] [get_bd_intf_pins OFDM_Framer_0/s_axis_config]
   connect_bd_intf_net -intf_net Conn2 [get_bd_intf_pins s_axi_fec_ctrl] [get_bd_intf_pins fec_hier_tx0/s_axi]
@@ -616,12 +663,13 @@ proc create_hier_cell_tx0 { parentCell nameHier } {
   connect_bd_intf_net -intf_net [get_bd_intf_nets fec_hier_M_AXIS] [get_bd_intf_pins s_axis_data] [get_bd_intf_pins fec_hier_tx0/M_AXIS]
   set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_intf_nets fec_hier_M_AXIS]
   connect_bd_intf_net -intf_net s_axis_fec_in_1 [get_bd_intf_pins s_axis_fec_in] [get_bd_intf_pins fec_hier_tx0/s_axis_fec_in]
-  connect_bd_intf_net -intf_net ssr_IFFT_0_m00_axis [get_bd_intf_pins m00_axis] [get_bd_intf_pins ssr_IFFT_0/m00_axis]
+  connect_bd_intf_net -intf_net ssr_IFFT_0_m00_axis [get_bd_intf_pins ssr_IFFT_0/m00_axis] [get_bd_intf_pins zero_pad_0/s00_axis]
+  connect_bd_intf_net -intf_net zero_pad_0_m00_axis [get_bd_intf_pins m00_axis] [get_bd_intf_pins zero_pad_0/m00_axis]
 
   # Create port connections
   connect_bd_net -net core_clk_1 [get_bd_pins core_clk] [get_bd_pins fec_hier_tx0/core_clk]
-  connect_bd_net -net rst_ps8_0_249M_peripheral_aresetn [get_bd_pins axi_resetn] [get_bd_pins OFDM_Framer_0/axis_aresetn] [get_bd_pins fec_hier_tx0/axi_resetn] [get_bd_pins ssr_IFFT_0/s_axis_aresetn]
-  connect_bd_net -net zynq_ultra_ps_e_0_pl_clk0 [get_bd_pins s_axi_lite_aclk] [get_bd_pins OFDM_Framer_0/axis_aclk] [get_bd_pins fec_hier_tx0/s_axi_lite_aclk] [get_bd_pins ssr_IFFT_0/s_axis_aclk]
+  connect_bd_net -net rst_ps8_0_249M_peripheral_aresetn [get_bd_pins axi_resetn] [get_bd_pins OFDM_Framer_0/axis_aresetn] [get_bd_pins fec_hier_tx0/axi_resetn] [get_bd_pins ssr_IFFT_0/s_axis_aresetn] [get_bd_pins zero_pad_0/s00_axis_aresetn]
+  connect_bd_net -net zynq_ultra_ps_e_0_pl_clk0 [get_bd_pins s_axi_lite_aclk] [get_bd_pins OFDM_Framer_0/axis_aclk] [get_bd_pins fec_hier_tx0/s_axi_lite_aclk] [get_bd_pins ssr_IFFT_0/s_axis_aclk] [get_bd_pins zero_pad_0/s00_axis_aclk]
 
   # Restore current instance
   current_bd_instance $oldCurInst
@@ -3387,6 +3435,7 @@ connect_bd_intf_net -intf_net [get_bd_intf_nets rx0_m00_axis] [get_bd_intf_pins 
   # Restore current instance
   current_bd_instance $oldCurInst
 
+  validate_bd_design
   save_bd_design
 }
 # End of create_root_design()
@@ -3398,6 +3447,4 @@ connect_bd_intf_net -intf_net [get_bd_intf_nets rx0_m00_axis] [get_bd_intf_pins 
 
 create_root_design ""
 
-
-common::send_gid_msg -ssname BD::TCL -id 2053 -severity "WARNING" "This Tcl script was generated from a block design that has not been validated. It is possible that design <$design_name> may result in errors during validation."
 
